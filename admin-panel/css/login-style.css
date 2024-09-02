@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Global Styles */
+:root {
+    --color-grey: #f0f0f0;
+    --color-light: #ffffff;
+    --color-dark: #333333;
+    --color-dark-grey: #cccccc;
+    --color-blue: #007bff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--color-grey);
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--color-dark);
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--color-light);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: auto;
+}
+
+label {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-dark);
+    margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--color-dark-grey);
+    border-radius: 4px;
+    margin-bottom: 16px;
+    font-size: 16px;
+    color: var(--color-dark);
+}
+
+button {
+    background: var(--color-blue);
+    color: var(--color-light);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: var(--color-dark);
+}
+
+/* Dark Mode */
+body.dark {
+    --color-light: #0C0C1E;
+    --color-grey: #060714;
+    --color-dark: #FBFBFB;
+}
+
+body.dark form {
+    background: var(--color-dark);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+body.dark label,
+body.dark input[type="text"],
+body.dark input[type="password"],
+body.dark button {
+    color: var(--color-light);
+}

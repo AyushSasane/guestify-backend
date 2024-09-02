@@ -1,0 +1,306 @@
+/* Import modern fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@400;500;700&display=swap');
+
+/* General styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #e0f0f1, #c5d6d7);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Form container styles */
+.form-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+    padding-top: 150px;
+}
+
+/* Segment selector styles */
+.segment-selector {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    top: 20px;
+    z-index: 2;
+}
+
+.segment-button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: rgba(255, 255, 255, 0.6);
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.segment-button.active {
+    background: #008080;
+    color: #fff;
+}
+
+.segment-button:not(.active):hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* Form card styles */
+.form-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.6);
+    width: 100%;
+    padding: 40px 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+    text-align: center;
+    overflow: visible;
+    z-index: 1;
+    font-family: 'Roboto', sans-serif;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+/* Circle icon styles */
+.circle-icon {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 4px solid #008080;
+    z-index: 3;
+}
+
+/* Icon within the circle */
+.circle-icon-image {
+    color: #008080;
+    font-size: 40px;
+}
+
+/* Form title */
+.form-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #008080;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Form field styles */
+.form-field-group {
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.form-label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.input-wrapper {
+    position: relative; /* Ensure suggestions-dropdown is positioned relative to this wrapper */
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    /*backdrop-filter: blur(4px);*/
+}
+
+.input-wrapper:hover {
+    z-index: 10;
+}
+
+.input-icon {
+    color: #008080;
+    margin-right: 10px;
+}
+
+.form-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 12px;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Button styles */
+.btn-submit {
+    background: #008080;
+    color: #fff;
+    padding: 12px 20px;
+    border: 2px solid #008080;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-submit:hover {
+    background: #006666;
+    color: #fff;
+    border-color: #006666;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal Content */
+.modal-content {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Close Button */
+.btn-close {
+    background: #00796b;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s ease;
+}
+
+.btn-close:hover {
+    background: #004d40;
+}
+
+/* Suggestions Dropdown */
+.suggestions-dropdown {
+    position: absolute;
+    top: 100%; /* Position the dropdown directly below the input field */
+    left: 0;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    max-height: 150px;
+    overflow-y: auto;
+    width: calc(100% - 2px); /* Ensure dropdown width matches the input field */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+    z-index: 1000; /* Ensure it appears in front of other elements */
+    font-family: 'Roboto', sans-serif;
+    margin-top: 2px; /* Adjust spacing if needed */
+}
+
+/* Suggestions Dropdown */
+.suggestions-dropdown {
+    position: absolute;
+    top: 100%; /* Position the dropdown directly below the input field */
+    left: 0;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    max-height: 150px;
+    overflow-y: auto;
+    width: calc(100% - 2px); /* Ensure dropdown width matches the input field */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+    z-index: 1000; /* Ensure it appears in front of other elements */
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Suggestion Item */
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: background 0.3s ease;
+}
+
+.suggestion-item:hover {
+    background: rgba(0, 128, 128, 0.1); /* Light highlight on hover */
+}
+
+/* Ensure input wrapper has relative positioning */
+.input-wrapper {
+    position: relative;
+}
+
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001; /* Ensure it appears above other elements */
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.btn-close {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-close:hover {
+    background: #0056b3;
+}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/profile-modal.css"> <!-- Link to the new CSS file -->
+    <title>WatchmanHub</title>
+</head>
+<body>
+    <!-- SIDEBAR -->
+    <section id="sidebar">
+        <a href="watchman_dash.html" class="brand">
+            <i class='bx bxs-door-open'></i> <!-- Updated icon to match index.html -->
+            <span class="text">WatchmanHub</span>
+        </a>
+        <ul class="side-menu top">
+            <li class="active">
+                <a href="watchman_dash.html">
+                    <i class='bx bxs-dashboard'></i>
+                    <span class="text">Watchman Dashboard</span>
+                </a>
+            </li>
+            <!-- Additional menu items can be added here -->
+        </ul>
+        <ul class="side-menu">
+            <!-- Removed settings as per the commented-out code -->
+            <!--li>
+                <a href="#" id="logout">
+                    <i class='bx bxs-log-out'></i>
+                    <span class="text">Logout</span>
+                </a>
+            </li-->
+        </ul>
+    </section>
+    <!-- SIDEBAR -->
+
+    <!-- CONTENT -->
+    <section id="content">
+        <!-- NAVBAR -->
+        <nav>
+            <i class='bx bx-menu'></i>
+            <a href="#" class="nav-link">Options</a>
+            <form action="#"></form>
+            <!-- Profile Icon -->
+            <a href="#" id="profile" class="profile">
+                <img src="img/people.png" alt="Profile Picture">
+            </a>
+        </nav>
+        <!-- NAVBAR -->
+
+        <!-- MAIN -->
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Watchman Dashboard</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="#">Watchman Dashboard</a></li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li><a class="active" href="#">Home</a></li>
+                    </ul>
+                    <h2>Guest Data</h2>
+                </div>
+                <a href="#" id="downloadGuestData" class="btn-download">
+                    <i class='bx bxs-cloud-download'></i> <!-- Ensuring consistency with index.html -->
+                    <span class="text">Download Guest Data</span>
+                </a>                
+            </div>
+
+            <ul class="box-info">
+                <li>
+                    <i class='bx bxs-calendar-check'></i>
+                    <span class="text">
+                        <h3 id="activeGuestsCount">0</h3>
+                        <p>Active Guests</p>
+                    </span>
+                </li>
+                <li>
+                    <i class='bx bxs-group'></i>
+                    <span class="text">
+                        <h3 id="totalGuestsCount">0</h3>
+                        <p>Total Guests</p>
+                    </span>
+                </li>
+            </ul>
+
+            <!-- Active Guests Table -->
+            <div class="table-data">
+                <div class="order">
+                    <div class="head">
+                        <h3>Active Guests</h3>
+                        <div class="search-container">
+                            <input type="text" id="searchActiveGuests" placeholder="Search guests...">
+                            <i class='bx bx-search'></i>
+                        </div>
+                    </div>  
+                    <table id="activeGuestsTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Flat Number</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Rows will be added dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Total Guests Table -->
+            <div class="table-data">
+                <div class="order">
+                    <div class="head">
+                        <h3>Total Guests</h3>
+                        <div class="search-container">
+                            <input type="text" id="searchTotalGuests" placeholder="Search guests...">
+                            <i class='bx bx-search'></i>
+                        </div>
+                    </div> 
+                    <table id="totalGuestsTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Flat Number</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Rows will be added dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+        <!-- MAIN -->
+    </section>
+    <!-- CONTENT -->
+
+    <!-- Profile Modal -->
+    <div id="modalOverlay" class="modal-overlay"></div> <!-- Overlay for modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-profile">&times;</span>
+            <h2>Profile</h2>
+            <!-- Tabs for modal sections -->
+            <div class="tabs">
+                <button class="tab-button active" data-target="profile-info">Profile Info</button>
+                <button class="tab-button" data-target="change-password">Change Password</button>
+            </div>
+            <!-- Tab content -->
+            <div id="profile-info" class="tab-content active">
+                <form id="profileInfoForm">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" readonly>
+                    <br>
+                    <div class="logout-section">
+                        <button id="logoutBtn" class="btn-logout">
+                            <i class='bx bxs-log-out'></i> <!-- Updated icon to match index.html -->
+                            Logout
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div id="change-password" class="tab-content">
+                <form id="passwordForm">
+                    <label for="oldPassword">Old Password:</label>
+                    <input type="password" id="oldPassword" name="oldPassword" required>
+                    <br>
+                    <label for="newPassword">New Password:</label>
+                    <input type="password" id="newPassword" name="newPassword" required>
+                    <br>
+                    <button type="submit">Change Password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal for Guest Details -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="guestDetails">
+                <!-- Guest details will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/watchman-dashboard.js"></script>
+    <script src="js/profile-modal.js"></script> <!-- Link to the new JS file -->
+
+    <!-- For Login -->
+    <script>
+        const token = localStorage.getItem('token');
+
+        // Function to check if the token is valid
+        const checkToken = async () => {
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:5000/api/protected', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.status === 401 || response.status === 403) {
+                    // Token is invalid or expired
+                    window.location.href = 'login.html';
+                }
+            } catch (error) {
+                console.error('Error checking token:', error);
+                window.location.href = 'login.html';
+            }
+        };
+
+        checkToken();
+
+        document.getElementById('logout').addEventListener('click', () => {
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,960 @@
+	@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+	/* Global Styles */
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	li {
+		list-style: none;
+	}
+
+	:root {
+		--font-poppins: 'Poppins', sans-serif;
+		--font-lato: 'Lato', sans-serif;
+
+		--color-light: #F9F9F9;
+		--color-blue: #3C91E6;
+		--color-light-blue: #CFE8FF;
+		--color-formal-blue: #3C91E6;
+		--color-dark-blue: #3378C5;
+		--color-grey: #eee;
+		--color-dark-grey: #AAAAAA;
+		--color-dark: #342E37;
+		--color-red: #DB504A;
+		--color-yellow: #FFCE26;
+		--color-dark-yellow: #E6B822;
+		--color-light-yellow: #FFF2C6;
+		--color-orange: #FD7238;
+		--color-light-orange: #FFE0D3;
+		--color-green: #228B22;
+		--color-dark-green: #1C6A3B; 
+	}
+
+	html {
+		overflow-x: hidden;
+	}
+
+	body.dark {
+		--color-light: #0C0C1E;
+		--color-grey: #060714;
+		--color-dark: #FBFBFB;
+	}
+
+	body {
+		background: var(--color-grey);
+		overflow-x: hidden;
+	}
+
+	/* Sidebar Styles */
+	#sidebar {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 280px;
+		height: 100%;
+		background: var(--color-light);
+		z-index: 2000;
+		font-family: var(--font-lato);
+		transition: 0.3s ease;
+		overflow-x: hidden;
+		scrollbar-width: none;
+	}
+
+	#sidebar::-webkit-scrollbar {
+		display: none;
+	}
+
+	#sidebar.hide {
+		width: 60px;
+	}
+
+	#sidebar .brand {
+		font-size: 24px;
+		font-weight: 700;
+		height: 56px;
+		display: flex;
+		align-items: center;
+		color: var(--color-blue);
+		position: sticky;
+		top: 0;
+		left: 0;
+		background: var(--color-light);
+		z-index: 800;
+		padding-bottom: 20px;
+		box-sizing: content-box;
+	}
+
+	#sidebar .brand .bx {
+		min-width: 60px;
+		display: flex;
+		justify-content: center;
+	}
+
+	#sidebar .side-menu {
+		width: 100%;
+		margin-top: 48px;
+	}
+
+	#sidebar .side-menu li {
+		height: 48px;
+		background: transparent;
+		margin-left: 6px;
+		border-radius: 48px 0 0 48px;
+		padding: 4px;
+	}
+
+	#sidebar .side-menu li.active {
+		background: var(--color-grey);
+		position: relative;
+	}
+
+	#sidebar .side-menu li.active::before,
+	#sidebar .side-menu li.active::after {
+		content: '';
+		position: absolute;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		box-shadow: 20px 20px 0 var(--color-grey);
+		z-index: -1;
+	}
+
+	#sidebar .side-menu li.active::before {
+		top: -40px;
+		right: 0;
+	}
+
+	#sidebar .side-menu li.active::after {
+		bottom: -40px;
+		right: 0;
+		box-shadow: 20px -20px 0 var(--color-grey);
+	}
+
+	#sidebar .side-menu li a {
+		width: 100%;
+		height: 100%;
+		background: var(--color-light);
+		display: flex;
+		align-items: center;
+		border-radius: 48px;
+		font-size: 16px;
+		color: var(--color-dark);
+		white-space: nowrap;
+		overflow-x: hidden;
+	}
+
+	#sidebar .side-menu.top li.active a {
+		color: var(--color-blue);
+	}
+
+	#sidebar.hide .side-menu li a {
+		width: calc(48px - (4px * 2));
+		transition: width 0.3s ease;
+	}
+
+	#sidebar .side-menu li a.logout {
+		color: var(--color-red);
+	}
+
+	#sidebar .side-menu.top li a:hover {
+		color: var(--color-blue);
+	}
+
+	#sidebar .side-menu li a .bx {
+		min-width: calc(60px - ((4px + 6px) * 2));
+		display: flex;
+		justify-content: center;
+	}
+
+	/* Content Styles */
+	#content {
+		position: relative;
+		width: calc(100% - 280px);
+		left: 280px;
+		transition: 0.3s ease;
+	}
+
+	#sidebar.hide ~ #content {
+		width: calc(100% - 60px);
+		left: 60px;
+	}
+
+	/* Navbar Styles */
+	#content nav {
+		height: 56px;
+		background: var(--color-light);
+		padding: 0 24px;
+		display: flex;
+		align-items: center;
+		grid-gap: 24px;
+		font-family: var(--font-lato);
+		position: sticky;
+		top: 0;
+		left: 0;
+		z-index: 500;
+	}
+
+	#content nav::before {
+		content: '';
+		position: absolute;
+		width: 40px;
+		height: 40px;
+		bottom: -40px;
+		left: 0;
+		border-radius: 50%;
+		box-shadow: -20px -20px 0 var(--color-light);
+	}
+
+	#content nav a {
+		color: var(--color-dark);
+	}
+
+	#content nav .bx.bx-menu {
+		cursor: pointer;
+		color: var(--color-dark);
+	}
+
+	#content nav .nav-link {
+		font-size: 16px;
+		transition: 0.3s ease;
+	}
+
+	#content nav .nav-link:hover {
+		color: var(--color-blue);
+	}
+
+	#content nav form {
+		max-width: 400px;
+		width: 100%;
+		margin-right: auto;
+	}
+
+	#content nav form .form-input {
+		display: flex;
+		align-items: center;
+		height: 36px;
+	}
+
+	#content nav form .form-input input {
+		flex-grow: 1;
+		padding: 0 16px;
+		height: 100%;
+		border: none;
+		background: var(--color-grey);
+		border-radius: 36px 0 0 36px;
+		outline: none;
+		width: 100%;
+		color: var(--color-dark);
+	}
+
+	#content nav form .form-input button {
+		width: 36px;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: var(--color-blue);
+		color: var(--color-light);
+		font-size: 18px;
+		border: none;
+		outline: none;
+		border-radius: 0 36px 36px 0;
+		cursor: pointer;
+	}
+
+	#content nav .notification {
+		font-size: 20px;
+		position: relative;
+	}
+
+	#content nav .notification .num {
+		position: absolute;
+		top: -6px;
+		right: -6px;
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		border: 2px solid var(--color-light);
+		background: var(--color-red);
+		color: var(--color-light);
+		font-weight: 700;
+		font-size: 12px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	#content nav .profile img {
+		width: 36px;
+		height: 36px;
+		object-fit: cover;
+		border-radius: 50%;
+	}
+
+	#content nav .switch-mode {
+		display: block;
+		min-width: 50px;
+		height: 25px;
+		border-radius: 25px;
+		background: var(--color-grey);
+		cursor: pointer;
+		position: relative;
+	}
+
+	#content nav .switch-mode::before {
+		content: '';
+		position: absolute;
+		top: 2px;
+		left: 2px;
+		bottom: 2px;
+		width: calc(25px - 4px);
+		background: var(--color-blue);
+		border-radius: 50%;
+		transition: all 0.3s ease;
+	}
+
+	#content nav #switch-mode:checked + .switch-mode::before {
+		left: calc(100% - (25px - 4px) - 2px);
+	}
+
+	/* Main Content Styles */
+	#content main {
+		width: 100%;
+		padding: 36px 24px;
+		font-family: var(--font-poppins);
+		max-height: calc(100vh - 56px);
+		overflow-y: auto;
+	}
+
+	#content main .head-title {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		grid-gap: 16px;
+		flex-wrap: wrap;
+	}
+
+	#content main .head-title .left h1 {
+		font-size: 36px;
+		font-weight: 600;
+		margin-bottom: 10px;
+		color: var(--color-dark);
+	}
+
+	#content main .head-title .left .breadcrumb {
+		display: flex;
+		align-items: center;
+		grid-gap: 16px;
+	}
+
+	#content main .head-title .left .breadcrumb li {
+		color: var(--color-dark);
+	}
+
+	#content main .head-title .left .breadcrumb li a {
+		color: var(--color-dark-grey);
+		pointer-events: none;
+	}
+
+	#content main .head-title .left .breadcrumb li a.active {
+		color: var(--color-blue);
+		pointer-events: unset;
+	}
+	/*
+	#content main .btn-download {
+		height: 36px;
+		padding: 0 16px;
+		border-radius: 36px;
+		background: var(--color-blue);
+		color: var(--color-light);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		grid-gap: 10px;
+		font-weight: 500;
+	} */
+
+	/* Box Info Styles */
+	#content main .box-info {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+		grid-gap: 24px;
+		margin-top: 36px;
+	}
+
+	#content main .box-info li {
+		padding: 24px;
+		background: var(--color-light);
+		border-radius: 20px;
+		display: flex;
+		align-items: center;
+		grid-gap: 24px;
+	}
+
+	#content main .box-info li .bx {
+		width: 80px;
+		height: 80px;
+		border-radius: 10px;
+		font-size: 36px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	#content main .box-info li:nth-child(1) .bx {
+		background: var(--color-light-blue);
+		color: var(--color-blue);
+	}
+
+	#content main .box-info li:nth-child(2) .bx {
+		background: var(--color-light-yellow);
+		color: var(--color-yellow);
+	}
+
+	#content main .box-info li:nth-child(3) .bx {
+		background: var(--color-light-orange);
+		color: var(--color-orange);
+	}
+
+	#content main .box-info li .text h3 {
+		font-size: 24px;
+		font-weight: 600;
+		color: var(--color-dark);
+	}
+
+	#content main .box-info li .text p {
+		color: var(--color-dark);
+	}
+
+	/* Table Styles */
+	#content main .table-data {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 24px;
+		margin-top: 24px;
+		width: 100%;
+		color: var(--color-dark);
+	}
+
+	#content main .table-data > div {
+		border-radius: 20px;
+		background: var(--color-light);
+		padding: 24px;
+		overflow-x: auto;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	}
+
+	#content main .table-data .head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 24px;
+	}
+
+	#content main .table-data .head h3 {
+		font-size: 24px;
+		font-weight: 600;
+		margin: 0;
+	}
+
+	/*Search Functionality*/	
+	#content main .table-data .head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1px 0;
+	}
+	
+	#content main .table-data .head .search-container {
+		position: relative;
+		display: flex;
+		align-items: center;
+		max-width: 200px;
+		width: 100%;
+	}
+	
+	#content main .table-data .head .search-container input[type="text"] {
+		width: 100%;
+		padding: 8px 12px; /* Reduced side padding */
+		border-radius: 20px;
+		border: 1px solid var(--color-dark-grey);
+		font-size: 14px;
+		background-color: var(--color-light);
+		transition: box-shadow 0.3s ease, border-color 0.3s ease;
+		padding-left: 40px;
+	}
+	
+	#content main .table-data .head .search-container .bx-search {
+		position: absolute;
+		left: 10px;
+		font-size: 18px;
+		color: var(--color-dark-grey);
+	}
+	
+	#content main .table-data .head .search-container input[type="text"]:focus {
+		outline: none;
+		border-color: var(--color-blue);
+		box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+	}
+	
+	#content main .table-data .head .bx-filter {
+		font-size: 18px;
+		color: var(--color-grey);
+		margin-left: 10px;
+		cursor: pointer;
+	}
+	
+
+	#content main .table-data .order {
+		flex-grow: 1;
+		flex-basis: 100%;
+	}
+
+	#content main .table-data .order table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+
+	#content main .table-data .order table th,
+	#content main .table-data .order table td {
+		padding: 12px 16px;
+		text-align: left;
+		border-bottom: 1px solid var(--color-grey);
+	}
+
+/* Table Header Styles */
+#content main .table-data .order table th {
+    font-size: 13px; /* Font size for header */
+    font-weight: 600; /* Bold font weight */
+    background: var(--color-grey); /* Background color */
+    color: var(--color-dark); /* Text color for better contrast */
+    text-align: center; /* Center text horizontally */
+    vertical-align: middle; /* Center text vertically */
+    padding: 10px; /* Padding around text */
+}
+
+
+/* Table Cell Styles */
+#content main .table-data .order table td {
+    font-size: 14px; /* Font size for table cells */
+    text-align: center; /* Center text horizontally */
+    vertical-align: middle; /* Center text vertically */
+    padding: 8px; /* Add padding for better spacing */
+}
+
+/* Optional: Center content inside table cells with multiple elements */
+#content main .table-data .order table td * {
+    display: inline-block; /* Ensure inline-block for any nested elements */
+    vertical-align: middle; /* Center nested elements vertically */
+}
+
+
+	#content main .table-data .order table tbody tr {
+		transition: background 0.3s ease;
+	}
+
+	#content main .table-data .order table tbody tr:hover {
+		background: var(--color-grey);
+	}
+
+/* General styles for the status element */
+#content main .table-data .order table td .status {
+    background: var(--color-grey); /* Default background color */
+    color: var(--color-light); /* White text */
+    border: none; /* Remove default border */
+    padding: 6px 12px; /* Unified padding inside the element */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 14px; /* Unified font size */
+    font-weight: 600; /* Font weight */
+    cursor: default; /* Default cursor */
+    text-align: center; /* Center the text */
+    display: inline-flex; /* Flexbox for centering */
+    align-items: center;
+    justify-content: center;
+    min-width: 120px; /* Consistent minimum width */
+    height: 40px; /* Consistent height */
+    box-sizing: border-box; /* Includes padding in width/height */
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden; /* Hides overflow text */
+    text-overflow: ellipsis; /* Adds ellipsis if text overflows */
+}
+
+/* Specific styles for checked-in status */
+#content main .table-data .order table td .status.checked-in {
+    background: var(--color-green);
+}
+
+/* Specific styles for checked-out status */
+#content main .table-data .order table td .status.checked-out {
+    background: var(--color-red);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    #content main .table-data .order table td .status {
+        font-size: 12px; /* Adjusted font size */
+        min-width: 100px; /* Adjusted minimum width */
+        height: 35px; /* Adjusted height */
+        padding: 4px 10px; /* Adjusted padding */
+        white-space: normal; /* Allow text to wrap */
+        display: block; /* Block display for wrapping text */
+        text-align: center; /* Center text */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #content main .table-data .order table td .status {
+        font-size: 10px; /* Further adjusted font size */
+        min-width: 80px; /* Further adjusted minimum width */
+        height: auto; /* Auto height to fit content */
+        padding: 4px 8px; /* Further adjusted padding */
+        white-space: normal; /* Allow text to wrap */
+        display: block; /* Block display for wrapping text */
+        text-align: center; /* Center text */
+    }
+}
+
+
+	#content main .table-data .order table td .btn-details {
+		background-color: var(--color-formal-blue); /* Formal blue color */
+		color: var(--color-light); /* White text */
+		border: none; /* Remove default border */
+		padding: 6px 12px; /* Unified padding inside the button */
+		border-radius: 5px; /* Rounded corners */
+		font-size: 14px; /* Unified font size */
+		font-weight: 600; /* Font weight */
+		cursor: pointer; /* Pointer cursor on hover */
+		transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+		font-family: var(--font-poppins); /* Use Poppins font */
+		text-align: center; /* Center the text */
+	}
+	
+	#content main .table-data .order table td .btn-details:hover {
+		background-color: var(--color-dark-blue); /* Darker blue on hover */
+		transform: scale(1.05); /* Slightly enlarge on hover */
+	}
+	
+
+	/* Media Queries */
+	@media screen and (max-width: 1024px) {
+		#sidebar {
+			width: 240px;
+		}
+
+		#content {
+			width: calc(100% - 240px);
+			left: 240px;
+		}
+
+		#sidebar.hide ~ #content {
+			width: calc(100% - 60px);
+			left: 60px;
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		#sidebar {
+			width: 200px;
+		}
+
+		#content {
+			width: calc(100% - 200px);
+			left: 200px;
+		}
+
+		#content nav .nav-link {
+			display: none;
+		}
+	}
+
+	@media screen and (max-width: 576px) {
+		#sidebar {
+			width: 350px;
+		}
+
+		#content {
+			width: calc(100% - 60px);
+			left: 60px;
+		}
+
+		#content nav form .form-input input {
+			display: none;
+		}
+
+		#content nav form .form-input button {
+			width: auto;
+			height: auto;
+			background: transparent;
+			border-radius: none;
+			color: var(--color-dark);
+		}
+
+		#content nav form.show .form-input input {
+			display: block;
+			width: 100%;
+		}
+
+		#content nav form.show .form-input button {
+			width: 36px;
+			height: 100%;
+			border-radius: 0 36px 36px 0;
+			color: var(--color-light);
+			background: var(--color-red);
+		}
+
+		#content nav form.show ~ .notification,
+		#content nav form.show ~ .profile {
+			display: none;
+		}
+
+		#content main .box-info {
+			grid-template-columns: 1fr;
+		}
+
+		#content main .table-data .head {
+			min-width: 420px;
+		}
+
+		#content main .table-data .order table {
+			min-width: 420px;
+		}
+
+		#content main .table-data .todo .todo-list {
+			min-width: 420px;
+		}
+	}
+
+	/* Add the active class styling for sidebar menu */
+	.side-menu li.active a {
+		background: #4CAF50; /* Example active state color */
+		color: #fff;
+	}
+
+	/* Other CSS styles */
+	/* Button styles */
+	.btn-details, .btn-update {
+		background-color: var(--color-green); /* Green background */
+		border: none; /* Remove borders */
+		color: white; /* White text */
+		padding: 6px 12px; /* Some padding */
+		cursor: pointer; /* Pointer/hand icon */
+		border-radius: 5px; /* Rounded corners */
+		margin-right: 5px; /* Some spacing between buttons */
+		font-size: 14px;
+		font-weight: 600;
+	}
+
+	.btn-details:hover, .btn-update:hover {
+		background-color: #45a049; /* Darker green */
+	}
+
+	/* Add the active class styling for sidebar menu */
+	.side-menu li.active a {
+		background: #4CAF50; /* Example active state color */
+		color: #fff;
+	}
+
+	/* Other CSS styles */
+	/* Example of styling the active class in sidebar */
+	.side-menu li.active a {
+		background-color: #4CAF50;
+		color: #fff;
+	}
+
+/* Container for buttons */
+.button-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap if needed */
+    gap: 10px; /* Space between buttons */
+    justify-content: flex-start; /* Align buttons to the left */
+    margin: 10px; /* Margin around container */
+}
+
+/* General styles for buttons */
+.btn-download,
+.btn-import {
+    background-color: var(--color-blue); /* Blue background */
+    border: none; /* Remove default border */
+    color: #ffffff; /* White text */
+    padding: 0.6em 1.2em; /* Unified padding */
+    border-radius: 10px; /* More rounded corners */
+    cursor: pointer; /* Pointer/hand icon */
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    font-weight: 500; /* Font weight */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    font-size: 1em; /* Responsive font size */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline for anchor tag */
+}
+
+/* Icon spacing if needed */
+.btn-download i,
+.btn-import i {
+    margin-right: 0.5em; /* Space between icon and text */
+}
+
+/* Hover effect */
+.btn-download:hover,
+.btn-import:hover {
+    background-color: #1E88E5; /* Darker blue on hover */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .btn-download,
+    .btn-import {
+        padding: 0.6em 1em; /* Maintain larger padding */
+        font-size: 0.9em; /* Slightly smaller font size */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .button-container {
+        flex-direction: column; /* Stack buttons vertically */
+        align-items: flex-start; /* Align buttons to the left */
+    }
+    
+    .btn-download,
+    .btn-import {
+        padding: 0.5em 1em; /* Ensure padding remains reasonable */
+        font-size: 0.8em; /* Even smaller font size */
+        width: 100%; /* Full width for smaller screens */
+        max-width: 300px; /* Max width to prevent buttons from becoming too wide */
+    }
+}
+
+/* Updated styles for the update button */
+.btn-update-resident {
+    background-color: var(--color-green); /* Match details button color */
+    color: var(--color-light); /* White text */
+    border: none; /* Remove default border */
+    padding: 6px 12px; /* Unified padding inside the button */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 14px; /* Unified font size */
+    font-weight: 600; /* Font weight */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+    font-family: var(--font-poppins); /* Use Poppins font */
+    text-align: center; /* Center the text */
+}
+
+/* Hover effect for the update button */
+.btn-update-resident:hover {
+    background-color: var(--color-dark-green); /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+
+
+/* Responsive adjustments
+@media screen and (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .modal-header h2 {
+        font-size: 20px;
+    }
+
+    .modal-body {
+        font-size: 14px;
+    }
+
+    .modal-footer .btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .modal-content {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .modal-header h2 {
+        font-size: 18px;
+    }
+
+    .modal-body {
+        font-size: 12px;
+    }
+
+    .modal-footer .btn {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+*/
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f9fa; /* Adjust this color as needed */
+}
+
+nav .profile {
+    margin-left: auto;
+    cursor: pointer;
+}
+
+nav .profile img {
+    width: 40px; /* Adjust the size as needed */
+    height: 40px; /* Ensure it's a square */
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover;
+}
+
+
+.btn-checkout {
+    background-color: var(--color-yellow); /* Primary yellow color */
+    color: #ffffff; /* White text */
+    border: none; /* Remove default border */
+    padding: 6px 12px; /* Unified padding inside the button */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 14px; /* Unified font size */
+    font-weight: 600; /* Font weight */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+    font-family: var(--font-poppins); /* Use Poppins font */
+    text-align: center; /* Center the text */
+}
+
+.btn-checkout:hover {
+    background-color: var(--color-dark-yellow); /* Darker yellow on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.btn-checkout:disabled {
+    background-color: #cccccc; /* Grey background for disabled state */
+    cursor: not-allowed; /* Show not-allowed cursor for disabled buttons */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    /* On tablets and smaller screens */
+    .button {
+        font-size: 12px; /* Smaller font size */
+        padding: 5px 10px; /* Adjusted padding */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    /* On mobile devices */
+    .button {
+        font-size: 12px; /* Further reduced font size */
+        padding: 4px 8px; /* Further reduced padding */
+    }
+}
