@@ -1,22 +1,40 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import User from './models/User.js';
 import bcrypt from 'bcryptjs';
 
-mongoose.connect('mongodb://127.0.0.1:27017/guestEntrySystem', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(async () => {
-    console.log('Connected to MongoDB');
+// Load environment variables from .env file
+dotenv.config();
 
-    // Hash password for the sample user
-    const hashedPassword = await bcrypt.hash('password123', 10);
+// Debugging output
+console.log('MongoDB URI:', process.env.MONGODB_URI);
 
-    // Create a sample user
-    await User.create({
-        username: 'admin',
-        password: hashedPassword // Use a hashed password in a real application
-    });
+async function seedDatabase() {
+    try {
+        // Connect to MongoDB using the URI from .env file
+        await mongoose.connect(process.env.MONGODB_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        console.log('MongoDB connected');
 
-    console.log('Sample user created');
-    mongoose.connection.close();
-}).catch(err => console.error(err));
+        // Hash password for the sample user
+        const hashedPassword = await bcrypt.hash('secretary123', 10);
+
+        // Create a sample user
+        await User.create({
+            username: 'secretary',
+            password: hashedPassword,
+        });
+
+        console.log('Sample user created');
+    } catch (err) {
+        console.error('Error:', err);
+    } finally {
+        // Close the connection to the database
+        mongoose.connection.close();
+    }
+}
+
+// Run the seed function
+seedDatabase();
